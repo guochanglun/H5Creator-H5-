@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height, user-scalable=no,initial-scale=1, 	minimum-scale=1, maximum-scale=1"> 
+	<title>Happiness</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullpage.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	
+	<audio id="song" src="res/song.mp3" autoplay="true"></audio>
+
+	<div id="fullpage"></div>
+
+	<div id="music" class="music-rotate"></div>
+	
+	<div id="mask"></div>
+
+<script src="js-lib/jquery.min.js"></script>
+<script src="js-lib/jquery.easings.min.js"></script>
+<script src="js-lib/jquery.fullpage.min.js"></script>
+<script src="js-lib/scrolloverflow.min.js"></script>
+
+<script src="js/test.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/Music.js"></script>
+<script src="js/State.js"></script>
+<script src="js/common.js"></script>
+<script>
+	$(function(){
+
+		// initial
+		var state = new State(data);
+		state.init();
+
+    	$('#fullpage').fullpage({
+    		"afterLoad": function(link, index){
+    			state.addAnimationQueue(index);
+    		}
+    	});
+
+    	var music = new Music();
+
+		$('#music').click(function(event){
+			music.toggle();
+		});
+	});
+</script>
+</body>
+</html>
